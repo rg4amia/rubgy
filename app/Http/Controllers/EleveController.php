@@ -14,7 +14,7 @@ class EleveController extends Controller
    */
   public function index()
   {
-    
+    return view('eleve.index');
   }
 
   /**

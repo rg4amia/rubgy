@@ -9,7 +9,7 @@
             <div class="card bg-authentication rounded-0 mb-0">
                 <div class="row m-0">
                     <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
-                        <img src="{{ asset('logo_crac.jpeg') }}"  height="230" width="400"  alt="branding logo">
+                        <img src="{{ asset('logo_crac.jpeg') }}"  height="auto" width="400"  alt="branding logo">
                     </div>
                     <div class="col-lg-6 col-12 p-0">
                         <div class="card rounded-0 mb-0 px-2">
@@ -72,7 +72,7 @@
                             </div>
                             <div class="login-footer">
                                 <div class="divider">
-                                    <div class="divider-text">OR</div>
+                                    <div class="divider-text">OU</div>
                                 </div>
                                 <div class="footer-btn d-inline">
                                     <a href="#" class="btn btn-facebook"><span class="fa fa-facebook"></span></a>
