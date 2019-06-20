@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
-@section('title') Campaigns @endsection
+@section('title') Eleves @endsection
 
-@section('subTitle') All @endsection
+@section('subTitle') Tous @endsection
 
 
 @section('content')
@@ -16,8 +16,8 @@
             <div class="card-body">
 
                 <div class="mb-3">
-                    <a class="btn btn-primary" href="{{ route('campaigns.create') }}">
-                        <span><i class="feather icon-plus"></i> Create Campaign</span>
+                    <a class="btn btn-primary" href="{{ route('eleve.create') }}">
+                        <span><i class="feather icon-plus"></i> Ajout un Elève</span>
                     </a>
                 </div>
 

@@ -24,7 +24,7 @@ class EleveController extends Controller
    */
   public function create()
   {
-    
+    return view('eleve.create');
   }
 
   /**

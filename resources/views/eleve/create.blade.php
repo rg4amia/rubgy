@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title') Campaigns @endsection
+@section('title') Eleves @endsection
 
 @section('subTitle') Create @endsection
 
@@ -20,39 +20,86 @@
                     <div class="col-4">
 
                         <div class="row">
+                            {{ Form::open(['url'=>route('eleve.store')]) }}
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name">
+                                    <label for="name">Nom</label>
+                                    <input type="text" name="nom" class="form-control" id="nom">
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="slug">Slug </label>
-                                    <input type="text" class="form-control" id="slug">
+                                    <label for="slug">Prenom </label>
+                                    <input type="text" name="prenom" class="form-control" id="prenom">
                                 </div>
                             </div>
 
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="slug">Date Naissance</label>
+                                    <input type="text" name="date_naissance" class="form-control" id="date_naissance">
+                                </div>
+                            </div>
 
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="videoSource">Video</label>
-                                    <select class="custom-select form-control" id="videoSource"
-                                            name="videoSource">
-                                        <option value="new-york">New York</option>
-                                        <option value="chicago">Chicago</option>
-                                        <option value="san-francisco">San Francisco</option>
-                                        <option value="boston">Boston</option>
-                                    </select>
+                                    <label for="slug">Nom Parent</label>
+                                    <input type="text" name="nom_parent" class="form-control" id="nom_parent">
                                 </div>
                             </div>
+
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="targetURL">Target URL</label>
-                                    <input type="url" class="form-control" id="targetURL">
+                                    <label for="slug">Contact</label>
+                                    <input type="text" name="contact" class="form-control" id="contact">
                                 </div>
                             </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="slug">Email</label>
+                                    <input type="text" name="email" class="form-control" id="email">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="slug">Groupe Sanguin</label>
+                                    <input type="text" name="groupe_sanguin" class="form-control" id="groupe_sanguin">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="slug">Photo</label>
+                                    <input type="text" name="photo" class="form-control" id="photo">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="slug">CM</label>
+                                    <input type="text" name="cm" class="form-control" id="cm">
+                                </div>
+                            </div>
+
+                             <div class="col-12">
+                                <div class="form-group">
+                                    <label for="slug">PJ</label>
+                                    <input type="text" name="pj" class="form-control" id="pj">
+                                </div>
+                            </div>
+
+                             <button id="save" type="submit" class="btn btn-primary btn-icon-split mt-3">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-save"></i>
+                                </span>
+                            <span class="text">Enregistrer</span>
+                        </button>
+
+                    {{ Form::close() }}
+                        
                         </div>
 
                     </div>

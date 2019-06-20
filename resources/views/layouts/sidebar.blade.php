@@ -6,7 +6,7 @@
             <li class="nav-item mr-auto">
                 <a class="navbar-brand">
                     <div class="brand-logo"></div>
-                    <h2 class="brand-text mb-0">Ovyoo</h2>
+                    <h2 class="brand-text mb-0">CRAC</h2>
                 </a>
             </li>
             <li class="nav-item nav-toggle">
@@ -31,9 +31,9 @@
             <li class="navigation-header"><span></span></li>
 
             <li class="nav-item">
-                <a href="#">
+                <a href="{{ route('eleve.index')}}">
                     <i class="feather icon-video"></i>
-                    <span class="menu-title" data-i18n="Videos">Videos</span>
+                    <span class="menu-title" data-i18n="Videos">Eleves</span>
                 </a>
             </li>
 
