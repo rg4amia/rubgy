@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+    use App\Model\Categorie;
+    use App\Model\Eleve;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\File;
+    use Illuminate\Support\Facades\Input;
+    use Illuminate\Support\Facades\Storage;
+    use MercurySeries\Flashy\Flashy;
+    use phpDocumentor\Reflection\Types\Compound;
 
-class EleveController extends Controller 
+    class EleveController extends Controller
 {
 
   /**
@@ -14,7 +22,8 @@ class EleveController extends Controller
    */
   public function index()
   {
-    return view('eleve.index');
+      $eleves = Eleve::all();
+    return view('eleve.index', compact('eleves'));
   }
 
   /**
@@ -24,7 +33,8 @@ class EleveController extends Controller
    */
   public function create()
   {
-    return view('eleve.create');
+      $categorie = Categorie::pluck('libelle','id');
+    return view('eleve.create', compact('categorie'));
   }
 
   /**
@@ -34,7 +44,44 @@ class EleveController extends Controller
    */
   public function store(Request $request)
   {
-    
+
+    $this->validate($request, [
+          /*'photo' => 'image|min:3000'*/
+      ]);
+
+      // Get image file
+      $file = $request->file('photo');
+      // Make a image name based on user name and current timestamp
+      $filename = str_slug($request->input('nom')).'_' . time() . '.' . $file->getClientOriginalExtension();
+      $path = 'photos';
+
+      if(Storage::disk('uploads')->put($path.'/'.$filename,  File::get($file))) {
+
+          $input['categorie_id'] = $request->categorie;
+          $input['user_id'] = Auth()->user()->id;
+          $input['nom'] = $request->nom;
+          $input['prenom'] = $request->prenom;
+          $input['date_naissance'] = $request->date_naissance;
+          $input['nom_parent'] = $request->nom_parent;
+          $input['contact'] = $request->contact;
+          $input['email'] = $request->email;
+          $input['groupe_sanguin'] = $request->groupe_sanguin;
+          $input['photo'] = $filename;
+          $input['cm'] = $request->cm;
+          $input['pj'] = $request->pj;
+
+          if ($eleve = Eleve::create($input)){
+
+              Flashy::success('Eleve Ajouté avec succès');
+
+              return redirect()->route('eleve.index');
+          }else{
+              Flashy::error("Erreur c'est produite l'hors de l'ajout");
+              return back();
+          }
+      }
+
+
   }
 
   /**

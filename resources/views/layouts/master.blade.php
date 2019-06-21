@@ -77,7 +77,7 @@
     window.baseUrl = '{{ url('/') }}'
 </script>
 @include('layouts.scripts')
-
+@include('flashy::message')
 </body>
 
 </html>

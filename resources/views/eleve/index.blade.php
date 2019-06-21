@@ -25,19 +25,27 @@
                     <table class="table table-hover table-striped">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Video</th>
-                            <th>Created</th>
-                            <th>Hit</th>
-                            <th></th>
+                            <th>Nom & Prenom</th>
+                            <th>Date naissance</th>
+                            <th>Nom parent</th>
+                            <th>Contact</th>
+                            <th>Categorie</th>
+                            <th>Groupe Sanguin</th>
+                            <th>Email</th>
                         </tr>
                         </thead>
                         <tbody>
+
+                        @foreach($eleves as $item)
                         <tr>
-                            <td>Leanne Graham</td>
-                            <td>https://www.youtube.com/watch?v=EU7PRmCpx-0</td>
-                            <td>05-16-2019 00:00</td>
-                            <td>Hit 1</td>
+                            <td>{{ $item->nom. ' '. $item->prenom }}</td>
+                            <td> {{ $item->date_naissance }}</td>
+                            <td> {{ $item->nom_parent }}</td>
+                            <td> {{ $item->contact }}</td>
+                            <td> {{ $item->categorie->libelle }}</td>
+                            <td> {{ $item->groupe_sanguin }}</td>
+                            <td> {{ $item->email }}</td>
+
                             <td class="float-right">
                                 <button type="button"
                                         class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
@@ -57,102 +65,7 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Leanne Graham</td>
-                            <td>https://www.youtube.com/watch?v=EU7PRmCpx-0</td>
-                            <td>05-16-2019 00:00</td>
-                            <td>Hit 1</td>
-                            <td class="float-right">
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
-                                    <i class="feather icon-link"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-success mr-0 waves-effect waves-light">
-                                    <i class="feather icon-target"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
-                                    <i class="feather icon-edit"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-danger mr-0 waves-effect waves-light">
-                                    <i class="feather icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Leanne Graham</td>
-                            <td>https://www.youtube.com/watch?v=EU7PRmCpx-0</td>
-                            <td>05-16-2019 00:00</td>
-                            <td>Hit 1</td>
-                            <td class="float-right">
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
-                                    <i class="feather icon-link"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-success mr-0 waves-effect waves-light">
-                                    <i class="feather icon-target"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
-                                    <i class="feather icon-edit"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-danger mr-0 waves-effect waves-light">
-                                    <i class="feather icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Leanne Graham</td>
-                            <td>https://www.youtube.com/watch?v=EU7PRmCpx-0</td>
-                            <td>05-16-2019 00:00</td>
-                            <td>Hit 1</td>
-                            <td class="float-right">
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
-                                    <i class="feather icon-link"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-success mr-0 waves-effect waves-light">
-                                    <i class="feather icon-target"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
-                                    <i class="feather icon-edit"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-danger mr-0 waves-effect waves-light">
-                                    <i class="feather icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Leanne Graham</td>
-                            <td>https://www.youtube.com/watch?v=EU7PRmCpx-0</td>
-                            <td>05-16-2019 00:00</td>
-                            <td>Hit 1</td>
-                            <td class="float-right">
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
-                                    <i class="feather icon-link"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-success mr-0 waves-effect waves-light">
-                                    <i class="feather icon-target"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
-                                    <i class="feather icon-edit"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-danger mr-0 waves-effect waves-light">
-                                    <i class="feather icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
