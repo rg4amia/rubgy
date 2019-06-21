@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Categorie;
 use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Redirect;
+    use MercurySeries\Flashy\Flashy;
 
-class CategorieController extends Controller 
+    class CategorieController extends Controller
 {
 
   /**
@@ -14,7 +18,8 @@ class CategorieController extends Controller
    */
   public function index()
   {
-    
+    $categories = Categorie::paginate(5);
+    return view('categorie.index',compact('categories'));
   }
 
   /**
@@ -24,7 +29,7 @@ class CategorieController extends Controller
    */
   public function create()
   {
-    
+    return view('categorie.create');
   }
 
   /**
@@ -34,7 +39,23 @@ class CategorieController extends Controller
    */
   public function store(Request $request)
   {
-    
+    $data = $request->all();
+    $data['user_id'] = Auth::id();
+
+    $categorie = Categorie::create($data);
+
+    if ($categorie){
+
+        Flashy::success('Votre categorie Ajouté avec succès');
+
+        return Redirect::route('categorie.index');
+    }
+    else{
+
+        Flashy::error("Une erreur est survenue l'hors de l'ajout de cette categorie");
+        return Redirect::route('categorie.create');
+    }
+
   }
 
   /**

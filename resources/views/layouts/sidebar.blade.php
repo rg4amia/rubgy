@@ -26,26 +26,62 @@
 
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-
-
             <li class="navigation-header"><span></span></li>
 
             <li class="nav-item">
                 <a href="{{ route('eleve.index')}}">
-                    <i class="feather icon-video"></i>
+                    <i class="feather icon-user-plus"></i>
                     <span class="menu-title" data-i18n="Videos">Eleves</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="#">
-                    <i class="feather icon-send"></i>
-                    <span class="menu-title" data-i18n="Campaigns">Campaigns</span>
+                <a href="{{route('versement.index')}}">
+                    <i class="feather icon-dollar-sign"></i>
+                    <span class="menu-title" data-i18n="Campaigns">Versement</span>
                 </a>
+            </li>
+            <li class="nav-item has-sub sidebar-group-active">
+                <a href="#">
+                    <i class="feather icon-corner-left-down"></i>
+                    <span class="menu-title" data-i18n="">Comptes</span>
+                </a>
+                <ul class="menu-content" style="">
+                    <li>
+                        <a href="{{route('compte.create')}}">
+                            <i></i><span class="menu-item" data-i18n="Categorie create">Creation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('compte.index')}}">
+                            <i></i><span class="menu-item" data-i18n="Categorie affiche">Affiche compte</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item has-sub sidebar-group-active">
+                <a href="#">
+                    <i class="feather icon-zap"></i>
+                    <span class="menu-title" data-i18n="">Categorie</span>
+                </a>
+                <ul class="menu-content" style="">
+                    <li>
+                        <a href="{{route('categorie.create')}}">
+                            <i></i><span class="menu-item" data-i18n="Categorie create">Creation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('categorie.index')}}">
+                            <i></i><span class="menu-item" data-i18n="Categorie affiche">Affiche categorie</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
 
-            <li class="nav-item">
+
+            {{--<li class="nav-item">
                 <a href="#">
                     <i class="feather icon-pie-chart"></i>
                     <span class="menu-title" data-i18n="Analytics">Analytics</span>
@@ -120,7 +156,7 @@
                     <i class="feather icon-message-square"></i>
                     <span class="menu-title" data-i18n="Manage Clients">Manage Clients</span>
                 </a>
-            </li>
+            </li>--}}
 
         </ul>
 

@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
-@section('title') Eleves @endsection
+@section('title') Compte @endsection
 
-@section('subTitle') Tous @endsection
+@section('subTitle') Gestion Entrée @endsection
 
 
 @section('content')
@@ -16,8 +16,8 @@
             <div class="card-body">
 
                 <div class="mb-3">
-                    <a class="btn btn-primary" href="{{ route('eleve.create') }}">
-                        <span><i class="feather icon-plus"></i> Ajout un Elève</span>
+                    <a class="btn btn-primary" href="{{ route('compte.create') }}">
+                        <span><i class="feather icon-plus"></i> Cree un Compte</span>
                     </a>
                 </div>
 
@@ -25,27 +25,22 @@
                     <table class="table table-hover table-striped">
                         <thead>
                         <tr>
-                            <th>Nom & Prenom</th>
-                            <th>Date naissance</th>
-                            <th>Nom parent</th>
-                            <th>Contact</th>
-                            <th>Categorie</th>
-                            <th>Groupe Sanguin</th>
-                            <th>Email</th>
+                            <th>#</th>
+                            <th>Libelle</th>
+                            <th>Montant</th>
+                            <th>Date debut</th>
+                            <th>Date fin</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        @foreach($eleves as $item)
+                        @foreach($comptes as $item)
                         <tr>
-                            <td>{{ $item->nom. ' '. $item->prenom }}</td>
-                            <td> {{ $item->date_naissance }}</td>
-                            <td> {{ $item->nom_parent }}</td>
-                            <td> {{ $item->contact }}</td>
-                            <td> {{ $item->categorie->libelle }}</td>
-                            <td> {{ $item->groupe_sanguin }}</td>
-                            <td> {{ $item->email }}</td>
-
+                            <td>{{ $item->id}}</td>
+                            <td> {{ $item->libelle }}</td>
+                            <td> {{ $item->montant }}</td>
+                            <td> {{ $item->date_debut }}</td>
+                            <td> {{ $item->date_fin }}</td>
                             <td class="float-right">
                                 <button type="button"
                                         class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
@@ -72,7 +67,7 @@
 
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center mt-2">
-                        {{ $eleves->links() }}
+                        {{ $comptes->links() }}
                         {{--<li class="page-item"><a class="page-link" href="#">
                                 <i class="feather icon-chevrons-left"></i> Prev
                             </a></li>

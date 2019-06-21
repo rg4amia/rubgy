@@ -22,8 +22,8 @@ namespace App\Http\Controllers;
    */
   public function index()
   {
-      $eleves = Eleve::all();
-    return view('eleve.index', compact('eleves'));
+        $eleves = Eleve::paginate(5);
+        return view('eleve.index', compact('eleves'));
   }
 
   /**

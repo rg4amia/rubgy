@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
-@section('title') Videos @endsection
+@section('title') Tableau de Bord @endsection
 
-@section('subTitle') All @endsection
+@section('subTitle') Mes Données @endsection
 
 
 @section('content')

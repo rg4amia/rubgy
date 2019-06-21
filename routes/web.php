@@ -26,4 +26,6 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('versement', 'VersementController');
     Route::resource('categorie', 'CategorieController');
     Route::resource('eleve', 'EleveController');
+    Route::resource('compte', 'CompteController');
+    Route::post('/getmontant/', 'AjaxController@compte_montant')->name('get.montant');
 
