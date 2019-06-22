@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Categorie;
+use App\Model\Anneescolaire;
+  use App\Model\Categorie;
 use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Redirect;
@@ -40,7 +41,16 @@ use Illuminate\Http\Request;
   public function store(Request $request)
   {
     $data = $request->all();
+
+    $academic = Anneescolaire::mine()
+        ->where('platform','academic')
+        ->where('selected',true)
+        ->first();
+
+    $data['academic_id'] = $academic->id;
+
     $data['user_id'] = Auth::id();
+
 
     $categorie = Categorie::create($data);
 

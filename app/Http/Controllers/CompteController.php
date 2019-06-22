@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Anneescolaire;
 use App\Model\Compte;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class CompteController extends Controller
      */
     public function index()
     {
-        $comptes = Compte::paginate(5);
+        $comptes = Compte::mine()->paginate(5);
         return view('compte.index', compact('comptes'));
     }
 
@@ -40,6 +41,13 @@ class CompteController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $academic = Anneescolaire::mine()
+            ->where('platform','academic')
+            ->where('active',true)
+            ->first();
+
+        $data['academic_id'] = $academic->id;
         $data['user_id'] = Auth::id();
         $compte = Compte::create($data);
 

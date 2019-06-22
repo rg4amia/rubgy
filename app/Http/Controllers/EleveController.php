@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+    use App\Model\Anneescolaire;
     use App\Model\Categorie;
     use App\Model\Eleve;
     use App\Model\Versement;
@@ -55,6 +56,11 @@ namespace App\Http\Controllers;
           /*'photo' => 'image|min:3000'*/
       ]);
 
+      $academic = Anneescolaire::mine()
+          ->where('platform','academic')
+          ->where('selected',true)
+          ->first();
+
       // Get image file
       $file = $request->file('photo');
       // Make a image name based on user name and current timestamp
@@ -74,6 +80,7 @@ namespace App\Http\Controllers;
           $input['groupe_sanguin'] = $request->groupe_sanguin;
           $input['photo'] = $filename;
           $input['cm'] = $request->cm;
+          $input['academic_id'] = $academic->id;
           $input['pj'] = $request->pj;
 
           if ($eleve = Eleve::create($input)){

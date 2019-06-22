@@ -51,7 +51,7 @@
                 </div>
                 <button id="save" type="submit" class="btn btn-primary btn-icon-split mt-3">
                     <span class="icon text-white-50">
-                        <i class="fas fa-save"></i>
+                        <i class="feather icon-save"></i>
                     </span>
                     <span class="text">Enregistrer</span>
                 </button>

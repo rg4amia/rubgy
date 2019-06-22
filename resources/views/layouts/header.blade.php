@@ -29,6 +29,13 @@
 
                         @auth
 
+                            <div class="col float-left">
+                                <div class="form-group">
+                                    <label for="name">Année Acedemic</label>
+                                    {{ Form::select('active', list_academic(),null, ['id' => 'academic','class'=>'form-control', 'required' => 'required']) }}
+                                    {{--{{ Form::select('active', list_academic() != null ? list_academic() : null, ['class'=>'form-control col-md-12', 'required'=>true ]) }}--}}
+                                </div>
+                            </div>
                             <li class="dropdown dropdown-user nav-item">
                                 <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                     <div class="user-nav d-sm-flex d-none">
@@ -89,5 +96,36 @@
         </div>
     </div>
 </nav>
+@section('js')
+    <script>
+        $(document).ready(function () {
+            $("#academic").on('change',function() {
+                var val = $(this).val();
+                console.log(val);
+                if(val != ''){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "{{ route('set.acedemic') }}",
+                        method: 'post',
+                        data:{id:val},
+                        dataType: 'json',
+                        success: function(result){
+
+                            location.reload(true);
+
+                        },error:function(jqXHR, textStatus){
+                            alert('Error.\n'+ jqXHR.responseText);
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+@endsection
 <!-- END: Header-->
 

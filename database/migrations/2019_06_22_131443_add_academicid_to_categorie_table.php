@@ -28,7 +28,7 @@ class AddAcademicidToCategorieTable extends Migration
      */
     public function down()
     {
-        Schema::table('categorie', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             //
         });
     }

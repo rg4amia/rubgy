@@ -15,7 +15,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="Ouattara Idriss - synderime@gmail.com">
 
-    <title>Ovyoo - @yield('title')</title>
+    <title>Cocody Rugby Abidjan Club - @yield('title')</title>
 
     <link rel="apple-touch-icon" href="{{ asset('app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('app-assets/images/ico/favicon.ico') }}">

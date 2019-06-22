@@ -2,8 +2,6 @@
 
 namespace App\Model;
 
-
-use function App\selected_annee;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
