@@ -16,7 +16,14 @@ class AddColumnToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
 
             $table->boolean('active');
-            //
+            //              $table->string('first_name')->nullable();
+            //            $table->string('last_name')->nullable();
+            //            $table->boolean('status')->default(true)->after('email');
+            //            $table->boolean('confirmed')->default(true)->after('status');
+            //            $table->json('settings')->nullable()->after('status');
+            //            $table->unsignedBigInteger('created_by')->default(0);
+            //            $table->dateTime('deleted_at')->nullable();
+            //            $table->string('emailpaypal')->unique()->nullable();
         });
     }
 

@@ -50,7 +50,7 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="{{ route('home') }}">Home</a>
+                                    <a href="{{ route('home') }}">Accueil</a>
                                 </li>
                                 <li class="breadcrumb-item">
                                     <a href="#">@yield('title')</a>
