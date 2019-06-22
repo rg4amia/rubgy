@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
     use App\Model\Categorie;
     use App\Model\Eleve;
+    use App\Model\Versement;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\File;
@@ -22,6 +23,11 @@ namespace App\Http\Controllers;
    */
   public function index()
   {
+
+      $eleve = Versement::mine()->whereHas('eleve', function ($q) {
+          return $q->where('id',1);
+      })->with('eleve')->get();
+
         $eleves = Eleve::paginate(5);
         return view('eleve.index', compact('eleves'));
   }
