@@ -13,12 +13,13 @@
         <div class="card-content">
 
             <div class="card-body">
-                {{ Form::model($eleve, ['route'=>['versement.update',$eleve[0]['id']],'method' => 'PUT']) }}
+                {{ Form::model($eleve, ['route'=>['versement.update',$eleve->id],'method' => 'PUT']) }}
                 <div class="row">
+                    <input type="hidden" class="form-control" id="identifier" name="login" value="{{$eleve->id}}" disabled>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Nom & Prenom (Eleve)</label>
-                            {{ Form::text('nom', $eleve[0]['nom'].' '.$eleve[0]['prenom'], ['class'=>'form-control', 'required' => 'required']) }}
+                            {{ Form::text('nom', $eleve->nom.' '.$eleve->prenom, ['class'=>'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                     <div class="col-6">
@@ -49,8 +50,7 @@
                         <div class="form-group">
                             <label for="name">Reste A Payer</label>
                             <div id="reste_payer">
-                                {{ Form::text('montantdverse',$eleve[0]['montant'], ['id' => 'montantdvers','class'=>'form-control', 'disable' => 'true']) }}
-
+                               {{-- {{ Form::text('montantdverse',null, ['id' => 'montantdvers','class'=>'form-control', 'disable' => 'true']) }}--}}
                             </div>
                         </div>
                     </div>

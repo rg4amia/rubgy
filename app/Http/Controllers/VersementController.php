@@ -72,34 +72,39 @@ class VersementController extends Controller
       $this->id_eleve = $id;
 
 
-      $eleves = Eleve::whereHas('versement', function ($q){
+      $eleves = Eleve::mine()->whereHas('versement', function ($q){
           return $q->where('eleve_id', $this->id_eleve);
       })->with('versement')->get();
 
-      foreach ($eleves as $item){
+        if((count($eleves) === 0) ===false){
 
-          $eleve[]=[
-              'id' => $item->id,
-              'nom' => $item->nom,
-              'prenom' => $item->prenom,
-          ];
+          foreach ($eleves as $item){
 
-          for ($y =0; $y < count($item->versement); $y++){
+              $eleve[]=[
+                  'id' => $item->id,
+                  'nom' => $item->nom,
+                  'prenom' => $item->prenom,
+              ];
 
               $data_montant = 0;
-              $data_montant+= $item->versement[$y]->montant;
-          }
 
-          foreach ($item->versement as $stam){
-
-              $acompte = 0;
-              $acompte = $stam->montant + $acompte;
-              $eleve['montant'] = $data_montant;
+              for ($y =0; $y < count($item->versement); $y++){
+                  $data_montant = $item->versement[$y]->montant + $data_montant;
+                  $eleve[0]['montant'] = $data_montant;
+              }
 
           }
-      }
-      //dd($data_montant);
-      dd($eleve);
+
+      }else{
+
+          $eleve = Eleve::mine()->findOrfail($this->id_eleve);
+
+          $compte = Compte::mine()->pluck('libelle','id')->prepend('--Choix Versement--');
+          return view('versement.newcreate',compact('eleve','compte'));
+
+       }
+
+      //dd($eleve);
 
       $compte = Compte::mine()->pluck('libelle','id')->prepend('--Choix Versement--');
       return view('versement.create',compact('eleve','compte'));
@@ -112,9 +117,12 @@ class VersementController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request,$id)
   {
-    
+
+    $data = $request->all();
+
+    dd($data);
   }
 
   /**

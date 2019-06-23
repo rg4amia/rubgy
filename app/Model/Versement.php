@@ -17,7 +17,7 @@ class Versement extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('montant', 'user_id', 'eleve_id','compte_id', 'academic_id');
+    protected $fillable = array('montant', 'user_id', 'eleve_id','compte_id', 'academic_id', 'resteapayer');
 
     protected $casts = [
         'user_id'            => 'integer',
@@ -26,6 +26,7 @@ class Versement extends Model
         'platform'           => 'string',
         'montant'           => 'integer',
         'academic_id'            => 'integer',
+        'resteapayer'            => 'string',
     ];
 
     public function scopeMine(Builder $query)
