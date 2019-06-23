@@ -14,6 +14,14 @@ class Compte extends Model
 
     protected $fillable = array('user_id', 'libelle','montant','date_debut','date_fin', 'academic_id');
 
+    protected $casts = [
+        'user_id'            => 'integer',
+        'libelle'               => 'string',
+        'platform'           => 'string',
+        'montant'           => 'integer',
+        'academic_id'            => 'integer',
+    ];
+
 
     public function scopeMine(Builder $query)
     {

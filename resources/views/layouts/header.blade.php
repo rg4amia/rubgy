@@ -20,10 +20,9 @@
                         <!--     i.ficon.feather.icon-menu-->
 
                     </ul>
-
                 </div>
 
-                <ul class="nav navbar-nav float-right">
+                <ul class="nav navbar-nav ">
 
                     @if (Route::has('login'))
 
@@ -31,12 +30,12 @@
 
                             <div class="col float-left">
                                 <div class="form-group">
-                                    <label for="name">Année Acedemic</label>
+                                    <label for="name"><span class="custom-control-indicator">Année Acedemic</span></label>
                                     {{ Form::select('active', list_academic(),null, ['id' => 'academic','class'=>'form-control', 'required' => 'required']) }}
                                     {{--{{ Form::select('active', list_academic() != null ? list_academic() : null, ['class'=>'form-control col-md-12', 'required'=>true ]) }}--}}
                                 </div>
                             </div>
-                            <li class="dropdown dropdown-user nav-item">
+                            <li class="dropdown dropdown-user nav-item float-right">
                                 <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                     <div class="user-nav d-sm-flex d-none">
                                         <span class="user-name text-bold-600">{{ Auth::user()->name }}</span>

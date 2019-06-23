@@ -40,6 +40,11 @@
                             {{ Form::text('motant', null, ['id' => 'montant_vers','class'=>'form-control', 'disable' => 'true']) }}
                         </div>
                     </div>
+                    <button id="check" type="button"
+                            class="btn btn-icon btn-icon btn-relief-info mr-0 waves-effect waves-light">
+                            <i class="feather icon-link"></i>
+                            Versement
+                    </button>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Reste A Payer</label>

@@ -19,6 +19,15 @@ class Versement extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('montant', 'user_id', 'eleve_id','compte_id', 'academic_id');
 
+    protected $casts = [
+        'user_id'            => 'integer',
+        'eleve_id'            => 'integer',
+        'compte_id'               => 'integer',
+        'platform'           => 'string',
+        'montant'           => 'integer',
+        'academic_id'            => 'integer',
+    ];
+
     public function scopeMine(Builder $query)
     {
         return $query->where('academic_id', selected_annee());

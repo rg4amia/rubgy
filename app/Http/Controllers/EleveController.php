@@ -25,11 +25,7 @@ namespace App\Http\Controllers;
   public function index()
   {
 
-      $eleve = Versement::mine()->whereHas('eleve', function ($q) {
-          return $q->where('id',1);
-      })->with('eleve')->get();
-
-        $eleves = Eleve::paginate(5);
+      $eleves = Eleve::paginate(5);
         return view('eleve.index', compact('eleves'));
   }
 
@@ -58,7 +54,7 @@ namespace App\Http\Controllers;
 
       $academic = Anneescolaire::mine()
           ->where('platform','academic')
-          ->where('selected',true)
+          ->where('active',true)
           ->first();
 
       // Get image file
