@@ -14,10 +14,14 @@ namespace App\Http\Controllers;
     use MercurySeries\Flashy\Flashy;
     use phpDocumentor\Reflection\Types\Compound;
 
-    class EleveController extends Controller
-{
+class EleveController extends Controller{
 
-  /**
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
    * Display a listing of the resource.
    *
    * @return Response

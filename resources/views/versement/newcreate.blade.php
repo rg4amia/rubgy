@@ -27,6 +27,7 @@
                             <label for="name">Type Paiment</label>
                             {{ Form::select('compte_id',$compte,null, ['id' => 'compte','class'=>'form-control', 'required' => 'required']) }}
                         </div>
+                        {!! create_compte()  !!}
                     </div>
                     <div class="col-6">
                         <div class="form-group">

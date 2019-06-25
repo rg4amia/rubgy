@@ -52,7 +52,7 @@
                         </div>
                         <div class="choose_file">
                             <span>Choisir une photo</span>
-                            <input name="photo" id="fileInput" type="file" />
+                            <input name="photo" id="fileInput" type="file" required />
                         </div>
                     </div>
                 </div>
@@ -61,19 +61,19 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label for="name">Nom</label>
-                            <input type="text" name="nom" class="form-control" id="nom">
+                            <input type="text" name="nom" class="form-control" id="nom" required>
                         </div>
                     </div>
                     <div class="col-4">
                     <div class="form-group">
                             <label for="slug">Prenom </label>
-                            <input type="text" name="prenom" class="form-control" id="prenom">
+                            <input type="text" name="prenom" class="form-control" id="prenom"  required>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="slug">Date Naissance</label>
-                            <input type="date" name="date_naissance" class="form-control" id="date_naissance">
+                            <input type="date" name="date_naissance" class="form-control" id="date_naissance" required>
                         </div>
                     </div>
                 </div>

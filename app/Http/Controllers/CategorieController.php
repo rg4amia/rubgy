@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Redirect;
     use MercurySeries\Flashy\Flashy;
+class CategorieController extends Controller{
 
-    class CategorieController extends Controller
-{
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
 
   /**
    * Display a listing of the resource.
@@ -44,7 +47,7 @@ use Illuminate\Http\Request;
 
     $academic = Anneescolaire::mine()
         ->where('platform','academic')
-        ->where('selected',true)
+        ->where('active',true)
         ->first();
 
     $data['academic_id'] = $academic->id;

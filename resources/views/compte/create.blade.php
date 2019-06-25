@@ -19,13 +19,13 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Libelle</label>
-                            <input type="text" name="libelle" class="form-control" id="nom">
+                            <input type="text" name="libelle" class="form-control" id="libelle" required >
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Montant</label>
-                            <input type="text" name="montant" class="form-control" id="nom">
+                            <input type="text" name="montant" class="form-control" id="montant" required>
                         </div>
                     </div>
                 </div>
@@ -33,13 +33,13 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Date debut</label>
-                            <input type="date" name="date_debut" class="form-control" id="nom">
+                            <input type="date" name="date_debut" class="form-control" id="date_debut" required >
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Date fin</label>
-                            <input type="date" name="date_fin" class="form-control" id="nom">
+                            <input type="date" name="date_fin" class="form-control" id="date_fin" required>
                         </div>
                     </div>
                 </div>

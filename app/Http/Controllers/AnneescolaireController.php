@@ -8,6 +8,11 @@ use MercurySeries\Flashy\Flashy;
 
 class AnneescolaireController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function SetAcademic(Request $request){
 
         $selectedAcademic = Anneescolaire::mine()->where('platform', 'academic')->where('active', true)->first();

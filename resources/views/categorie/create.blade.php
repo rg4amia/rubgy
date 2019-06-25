@@ -20,13 +20,13 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Libelle</label>
-                            <input type="text" name="libelle" class="form-control" id="nom">
+                            <input type="text" name="libelle" class="form-control" id="libelle" required>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Designation</label>
-                            <input type="text" name="designation" class="form-control" id="nom">
+                            <input type="text" name="designation" class="form-control" id="designation" required>
                         </div>
                     </div>
                 </div>

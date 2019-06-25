@@ -19,6 +19,7 @@ use Carbon\Carbon;
 */
 
 use App\Model\Anneescolaire;
+use App\Model\Compte;
 
 /**
  * @param $mediaId
@@ -37,5 +38,17 @@ use App\Model\Anneescolaire;
             $selected = Anneescolaire::mine()->where('platform', 'academic')->where('active', true)->first();
             $academics = Anneescolaire::pluck('anneescolaire','id')->prepend($selected->anneescolaire);
             return $academics;
+        }
+    }
+    if( ! function_exists('create_compte') ) {
+        function create_compte(){
+
+            $buttom = "<a href=\"{{route('compte.store')}}\" class=\"btn btn-primary\" <i class=\"feather icon-plus\"></i> Creer un Compte</a>";
+            $lst_compte = Compte::mine()->get();
+
+            if (count($lst_compte) ===0 ){
+                return $buttom;
+            }
+
         }
     }
