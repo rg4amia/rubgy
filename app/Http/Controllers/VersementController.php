@@ -128,6 +128,8 @@ use App\Model\Anneescolaire;
   public function update(Request $request,$id)
   {
 
+      //MONTANT DU VERSEMENT => montant       MONTANT DEJA VERSE => montantdverse       DU COMPTE => montantapayer
+
     $academic = Anneescolaire::mine()
           ->where('platform','academic')
           ->where('active',true)
@@ -136,7 +138,7 @@ use App\Model\Anneescolaire;
     $data = [
         'montant' => $request->montant,
         'academic_id' =>  $academic->id,
-        'resteapayer' => ($request->montantapayer - $request->montant),
+        'resteapayer' => $request->montantapayer - ($request->montantdverse + $request->montant),
         'user_id'     => Auth::id(),
         'eleve_id'     => $request->id_eleve,
         'compte_id'     => $request->compte_id,

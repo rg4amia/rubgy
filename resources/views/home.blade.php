@@ -46,7 +46,7 @@
                                 <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
                             </div>
                         </div>
-                        <h2 class="text-bold-700 mt-1"><span class="badge badge-info">{{$compte}} f CFA</span></h2>
+                        <h2 class="text-bold-700 mt-1"><span class="badge badge-info">{{$compte * $nbre_totaleleve}} f CFA</span></h2>
                         <p class="mb-2">Montant A Couvrir </p>
                     </div>
 
