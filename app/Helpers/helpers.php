@@ -43,11 +43,10 @@ use App\Model\Compte;
     if( ! function_exists('create_compte') ) {
         function create_compte(){
 
-            $buttom = "<a href=\"{{route('compte.store')}}\" class=\"btn btn-primary\" <i class=\"feather icon-plus\"></i> Creer un Compte</a>";
             $lst_compte = Compte::mine()->get();
 
             if (count($lst_compte) ===0 ){
-                return $buttom;
+                return true;
             }
 
         }

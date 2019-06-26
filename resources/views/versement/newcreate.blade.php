@@ -15,44 +15,43 @@
             <div class="card-body">
                 {{ Form::model($eleve, ['route'=>['versement.update',$eleve->id],'method' => 'PUT']) }}
                 <div class="row">
-                    <input type="hidden" class="form-control" id="identifier" name="login" value="{{$eleve->id}}" disabled>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Nom & Prenom (Eleve)</label>
+                            <input type="hidden" class="form-control" id="identifier" name="id_eleve" value="{{$eleve->id}}">
                             {{ Form::text('nom', $eleve->nom.' '.$eleve->prenom, ['class'=>'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="name">Type Paiment</label>
+                            <label for="name">Type Paiement</label>
                             {{ Form::select('compte_id',$compte,null, ['id' => 'compte','class'=>'form-control', 'required' => 'required']) }}
                         </div>
-                        {!! create_compte()  !!}
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="name">Montant à Payer</label>
-                            <select class="form-control required" name="compte_montant" id="compte_montant">
-                            </select>
+                            <label for="name">Montant du Compte</label>
+                            {{ Form::text('montantapayer', null, ['id' => 'montantapayer','class'=>'form-control', 'required' => true, 'disable' => true]) }}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="name">Montant Déjà Versé</label>
+                            {{ Form::text('montantdverse',null, ['id' => 'montantdvers','class'=>'form-control', 'disable' => 'true']) }}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="name">Reste A Payer</label>
+                            {{ Form::number('montant', null, ['id' => 'restepaye','class'=>'form-control', 'required' => true ]) }}
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Montant Versement</label>
-                            {{ Form::text('montant', null, ['id' => 'montant_vers','class'=>'form-control', 'disable' => 'true']) }}
-                        </div>
-                    </div>
-                   {{-- <button id="check" type="button"
-                            class="btn btn-icon btn-icon btn-relief-info mr-0 waves-effect waves-light">
-                            <i class="feather icon-link"></i>
-                            Versement
-                    </button>--}}
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="name">Reste A Payer</label>
-                            <div id="reste_payer">
-                               {{-- {{ Form::text('montantdverse',null, ['id' => 'montantdvers','class'=>'form-control', 'disable' => 'true']) }}--}}
-                            </div>
+                            {{ Form::number('montant', null, ['id' => 'montant_vers','class'=>'form-control', 'required' => true ]) }}
+                            <span id="message"></span>
+
                         </div>
                     </div>
                 </div>
@@ -83,34 +82,36 @@
 @section('js')
 
     <script>
-        $(document).ready(function () {
-            $("#montant_vers").on('keyup change',function() {
-                var val = $(this).val();
-                console.log(val);
-                if(val != ''){
-                    $("#reste_payer").empty();
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    $.ajax({
-                        url: "{{ route('get.montant') }}",
-                        method: 'post',
-                        data:{val:val},
-                        dataType: 'json',
-                        success: function(result){
-                            //on rempli la seconde liste
-                            $.each( result, function( key, value ) {
-                                console.log(value.id);
-                                $("#compte_montant").append('<input name="reste_payer" value="'+ value.montant+'">'+ value.montant +'</input>');
-                            });
-                        },error:function(jqXHR, textStatus){
-                            alert('Error.\n'+ jqXHR.responseText);
-                        }
-                    });
+
+        $(document).ready(function (){
+
+            $("#montant_vers").on('keyup', function () {
+
+                var montant_vers = $(this).val();
+                var restepaye = $("#restepaye").val();
+                var message = $("#message");
+                console.log(restepaye - montant_vers);
+
+                var data = (restepaye - montant_vers);
+
+
+                if (data == 0){
+                    message.removeClass("badge badge-danger badge-info badge-success");
+                    message.html("Merci de solder le compte").addClass("badge badge-success");
+                    $('#form').find('button[type="submit"]').attr('disabled', false);
+                }else if (data > 0){
+                    message.removeClass("badge badge-danger badge-info badge-success");
+                    message.html("Solde partielle").addClass("badge badge-info");
+                    $('#form').find('button[type="submit"]').attr('disabled', false);
+                }else if (data < 0) {
+                    message.removeClass("badge badge-danger badge-info badge-success");
+                    message.html("Attention ce montant est superieur au montant a verser").addClass("badge badge-danger");
+                    $('#form').find('button[type="submit"]').attr('disabled', true);
                 }
-            });
+
+
+            })
+
         });
 
     </script>
@@ -119,9 +120,10 @@
         $(document).ready(function () {
             $("#compte").on('change',function() {
                 var val = $(this).val();
-                console.log(val);
-                if(val != ''){
-                    $("#compte_montant").empty();
+                var id_eleve = $("#id_eleve").val();
+                if(val > 0){
+                    $("#montantdvers").empty();
+                    $("#montantapayer").empty();
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -130,14 +132,13 @@
                     $.ajax({
                         url: "{{ route('get.montant') }}",
                         method: 'post',
-                        data:{val:val},
+                        data:{val:val,id_eleve:id_eleve},
                         dataType: 'json',
                         success: function(result){
-                            //on rempli la seconde liste
-                            $.each( result, function( key, value ) {
-                                console.log(value.id);
-                                $("#compte_montant").append('<option value="'+ value.montant+'">'+ value.montant +'</option>');
-                            });
+                            $("#montantdvers").val(0);
+                            $("#montantapayer").val(result.montantapayer);
+                            $("#restepaye").val(result.montantapayer);
+
                         },error:function(jqXHR, textStatus){
                             alert('Error.\n'+ jqXHR.responseText);
                         }

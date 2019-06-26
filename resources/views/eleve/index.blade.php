@@ -66,6 +66,11 @@
                             </td>
                         </tr>
                             @endforeach
+                        @if(count($eleves) < 1)
+                            <tr>
+                                <td>Pas d'éleve pour cette Année Academic</td>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>

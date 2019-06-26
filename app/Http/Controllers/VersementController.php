@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Categorie;
+use App\Model\Anneescolaire;
+    use App\Model\Categorie;
     use App\Model\Compte;
     use App\Model\Eleve;
     use App\Model\Versement;
     use http\Client\Curl\User;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
+    use MercurySeries\Flashy\Flashy;
 
-class VersementController extends Controller 
+    class VersementController extends Controller
 {
     private $id_eleve;
 
@@ -77,7 +80,6 @@ class VersementController extends Controller
   {
       $this->id_eleve = $id;
 
-
       $eleves = Eleve::mine()->whereHas('versement', function ($q){
           return $q->where('eleve_id', $this->id_eleve);
       })->with('versement')->get();
@@ -126,9 +128,26 @@ class VersementController extends Controller
   public function update(Request $request,$id)
   {
 
-    $data = $request->all();
+    $academic = Anneescolaire::mine()
+          ->where('platform','academic')
+          ->where('active',true)
+          ->first();
 
-    dd($data);
+    $data = [
+        'montant' => $request->montant,
+        'academic_id' =>  $academic->id,
+        'resteapayer' => ($request->montantapayer - $request->montant),
+        'user_id'     => Auth::id(),
+        'eleve_id'     => $request->id_eleve,
+        'compte_id'     => $request->compte_id,
+    ];
+
+    if ($versement = Versement::create($data)){
+
+        Flashy::success('Versement Effectué avec succès');
+        return redirect()->route('versement.index');
+    }
+
   }
 
   /**

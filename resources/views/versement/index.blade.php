@@ -14,13 +14,13 @@
         <div class="card-content">
 
             <div class="card-body">
-
+                @if(create_compte() == true)
                 <div class="mb-3">
                     <a class="btn btn-primary" href="{{ route('compte.create') }}">
                         <span><i class="feather icon-plus"></i> Ajout un compte</span>
                     </a>
                 </div>
-
+                @endif
                 <div class="table-responsive-sm">
                     <table class="table table-hover table-striped">
                         <thead>
@@ -57,6 +57,11 @@
                                 </td>
                             </tr>
                         @endforeach
+                        @if(count($eleve_vers) < 1)
+                            <tr>
+                                <td>Pas d'éleve pour cette Année Academic</td>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>

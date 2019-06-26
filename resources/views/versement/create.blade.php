@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="name">Type Paiment</label>
+                            <label for="name">Type Paiement</label>
                             {{ Form::select('compte_id',$compte,null, ['id' => 'compte','class'=>'form-control', 'required' => 'required']) }}
 
                         </div>
@@ -87,41 +87,6 @@
 
 @endsection
 @section('js')
-   {{-- <script>
-        $(document).ready(function () {
-            $("#montant_vers").on('keyup change',function() {
-                var val = $(this).val();
-                var id_eleve = $("#id_eleve").val();
-
-                if(val != ''){
-                    $("#reste_payer").empty();
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    $.ajax({
-                        url: "{{ route('get.montant') }}",
-                        method: 'post',
-                        data:{val:val,id_eleve:id_eleve},
-                        dataType: 'json',
-                        success: function(result){
-                            //on rempli la seconde liste
-                            $.each( result, function( key, value ) {
-                                console.log(value.id);
-                                $("#montantapayer").val(data.montant);
-                                $("#montantdverse").val(data.montantdverse);
-                            });
-                        },error:function(jqXHR, textStatus){
-                            alert('Error.\n'+ jqXHR.responseText);
-                        }
-                    });
-                }
-            });
-        });
-
-    </script>--}}
-
     <script>
 
         $(document).ready(function (){
@@ -133,17 +98,21 @@
                 var message = $("#message");
                 console.log(restepaye - montant_vers);
 
-                /*if (montant_vers === restepaye){
-                    message.removeClass("badge-danger badge-info badge-success");
-                    message.html("Vous Voulez Solder le compte").addClass("badge-success");
-                }else if (montant_vers < restepaye){
-                    message.removeClass("badge-danger badge-info badge-success");
-                    message.html("Ce montant ne solde pas le Compte").addClass("badge-info");
-                }else if (montant_vers > restepaye) {
-                    message.removeClass("badge-danger badge-info badge-success");
-                    message.html("Attention ce montant est superieur au montant a verser").addClass("badge-danger");
-                    //$('#form').find('button[type="submit"]').attr('disabled', true);
-                }*/
+                var data = (restepaye - montant_vers);
+
+                if (data == 0){
+                    message.removeClass("badge badge-danger badge-info badge-success");
+                    message.html("Merci de solder le compte").addClass("badge badge-success");
+                    $('#form').find('button[type="submit"]').attr('disabled', false);
+                }else if (data > 0){
+                    message.removeClass("badge badge-danger badge-info badge-success");
+                    message.html("Solde partielle").addClass("badge badge-info");
+                    $('#form').find('button[type="submit"]').attr('disabled', false);
+                }else if (data < 0) {
+                    message.removeClass("badge badge-danger badge-info badge-success");
+                    message.html("Attention ce montant est superieur au montant a verser").addClass("badge badge-danger");
+                    $('#form').find('button[type="submit"]').attr('disabled', true);
+                }
 
 
             })

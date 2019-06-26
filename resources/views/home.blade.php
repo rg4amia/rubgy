@@ -18,8 +18,8 @@
                                 <i class="feather icon-users text-primary font-medium-5"></i>
                             </div>
                         </div>
-                        <h2 class="text-bold-700 mt-1">92.6k</h2>
-                        <p class="mb-2">Campaigns</p>
+                        <h2 class="text-bold-700 mt-1"><span class="badge badge-warning">{{$nbre_totaleleve}}</span></h2>
+                        <p class="mb-2">Effectif Total</p>
                     </div>
 
                 </div>
@@ -29,11 +29,11 @@
                     <div class="card-header d-flex flex-column align-items-start pb-0">
                         <div class="avatar bg-rgba-success p-50 m-0">
                             <div class="avatar-content">
-                                <i class="feather icon-credit-card text-success font-medium-5"></i>
+                                <i class="feather icon-shopping-cart text-success font-medium-5"></i>
                             </div>
                         </div>
-                        <h2 class="text-bold-700 mt-1">97.5k</h2>
-                        <p class="mb-2">Offers</p>
+                        <h2 class="text-bold-700 mt-1"><span class="badge badge-success">{{$montant_total_verse}} f CFA</span></h2>
+                        <p class="mb-2">Montant EnCaissé</p>
                     </div>
 
                 </div>
@@ -46,8 +46,8 @@
                                 <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
                             </div>
                         </div>
-                        <h2 class="text-bold-700 mt-1">36k</h2>
-                        <p class="mb-2">Views</p>
+                        <h2 class="text-bold-700 mt-1"><span class="badge badge-info">{{$compte}} f CFA</span></h2>
+                        <p class="mb-2">Montant A Couvrir </p>
                     </div>
 
                 </div>
@@ -60,8 +60,8 @@
                                 <i class="feather icon-package text-warning font-medium-5"></i>
                             </div>
                         </div>
-                        <h2 class="text-bold-700 mt-1">97.5K</h2>
-                        <p class="mb-2">Clicks</p>
+                        <h2 class="text-bold-700 mt-1"><span class="badge badge-info">{{$montan_versement_attente}} f CFA</span></h2>
+                        <p class="mb-2">Reste à Couvrir</p>
                     </div>
 
                 </div>
