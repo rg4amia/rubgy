@@ -160,7 +160,8 @@ use App\Model\Anneescolaire;
    */
   public function destroy($id)
   {
-    
+
+
   }
   
 }
