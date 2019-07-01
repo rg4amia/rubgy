@@ -47,10 +47,10 @@
                             <td> {{ $item->email }}</td>
 
                             <td class="float-right">
-                                <button type="button"
-                                        class="btn btn-icon btn-icon rounded-circle btn-primary mr-0 waves-effect waves-light">
-                                    <i class="feather icon-link"></i>
-                                </button>
+                                <a href="{{route('imprime.fiche',$item->id)}}"
+                                   class="btn btn-icon btn-icon rounded-circle btn-flat-primary mr-0 waves-effect waves-light">
+                                    <i class="feather icon-printer"></i>
+                                </a>
                                 <button type="button"
                                         class="btn btn-icon btn-icon rounded-circle btn-success mr-0 waves-effect waves-light">
                                     <i class="feather icon-target"></i>

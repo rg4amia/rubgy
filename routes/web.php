@@ -27,3 +27,9 @@ Route::get('/', 'HomeController@index')->name('home');
     Route::post('/getmontant/', 'AjaxController@compte_montant')->name('get.montant');
     Route::post('/setacedemic/', 'AnneescolaireController@SetAcademic')->name('set.acedemic');
 
+
+    Route::group(['prefix'=>'Imprime','namespace'=>'Imprime','as'=>'imprime.'], function () {
+        Route::get('/{id}/fiche', 'ImprimeController@getImprime')->name('fiche');
+    });
+
+
